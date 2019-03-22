@@ -1,0 +1,5 @@
+﻿{
+    "connectionString": "mongodb://tamaduro:tamaduroftt10@tamaduro-shard-00-00-yxyqs.azure.mongodb.net:27017,tamaduro-shard-00-01-yxyqs.azure.mongodb.net:27017,tamaduro-shard-00-02-yxyqs.azure.mongodb.net:27017/tamadurodb?ssl=true&replicaSet=tamaduro-shard-0&authSource=admin&retryWrites=true",
+    "apiUrl": "http://localhost:9050/api",
+    "secret": "REPLACE THIS WITH YOUR OWN SECRET, IT CAN BE ANY STRING"
+}

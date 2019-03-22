@@ -27,4 +27,4 @@ build/Release
 node_modules
 
 # config file will change according to system
-config.json
+# config.json
