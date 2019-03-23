@@ -64,7 +64,7 @@ function create(userParam) {
 
             if (user) {
                 // username already exists
-                deferred.reject('Username "' + userParam.username + '" is already taken');
+                deferred.reject('O usuário "' + userParam.username + '" já foi utilizado. Tente novamente com outro usuário.');
             } else {
                 createUser();
             }
@@ -105,7 +105,7 @@ function update(_id, userParam) {
 
                     if (user) {
                         // username already exists
-                        deferred.reject('Username "' + req.body.username + '" is already taken')
+                        deferred.reject('O usuário "' + req.body.username + '" já foi utilizado. Tente novamente com outro usuário.')
                     } else {
                         updateUser();
                     }
