@@ -28,3 +28,7 @@ node_modules
 
 # config file will change according to system
 # config.json
+
+# cordova build folders
+cordova/plugins/
+cordova/platforms/
