@@ -1,0 +1,26 @@
+body {
+    padding-top: 100px;
+}
+
+.form-container {
+    width: 80%;
+    margin: auto;
+}
+
+.credits {
+    border-top: 1px solid #ddd;
+    margin-top: 40px;
+    padding-top: 20px;
+}
+
+.form-group--password{
+    display: flex;
+    flex-direction: column;
+    align-content: space-between;
+}
+
+.forgot-password-link {
+    align-self: flex-end;
+    font-size: .8em;
+    margin-top: 1em;
+}

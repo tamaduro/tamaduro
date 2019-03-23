@@ -1,6 +1,10 @@
 ﻿<%- include('partials/header') %>
 <div class="form-container">
-    <h2>Login</h2>
+    <div class="logo-container">
+        <div class="logo">
+            TaMaduro
+        </div>
+    </div>
     <% if(locals.error) { %>
         <div class="alert alert-danger"><%= error %></div>
     <% } %>
@@ -9,16 +13,15 @@
     <% } %>
     <form method="post">
         <div class="form-group">
-            <label for="username">Username</label>
-            <input type="text" name="username" id="username" value="<%= locals.username || '' %>" class="form-control" />
+            <input type="text" name="username" id="username" value="<%= locals.username || '' %>" class="form-control" placeholder="E-mail"/>
+        </div>
+        <div class="form-group form-group--password">
+            <input type="password" name="password" id="password" class="form-control" placeholder="Senha"/>
+            <span class="forgot-password-link">Esqueci minha senha</span>
         </div>
         <div class="form-group">
-            <label for="password">Password</label>
-            <input type="password" name="password" id="password" class="form-control" />
-        </div>
-        <div class="form-group">
-            <button type="submit" class="btn btn-primary">Login</button>
-            <a href="/register" class="btn btn-link">Register</a>
+            <button type="submit" class="btn btn-block btn-primary">Login</button>
+            <a href="/register" class="btn btn-block btn-primary">Cadastrar</a>
         </div>
     </form>
 </div>
