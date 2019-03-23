@@ -11,6 +11,7 @@ var service = {};
 
 service.authenticate = authenticate;
 service.getById = getById;
+service.getByEmail = getByEmail;
 service.create = create;
 service.update = update;
 service.delete = _delete;
@@ -66,7 +67,17 @@ function create(userParam) {
                 // username already exists
                 deferred.reject('O usuário "' + userParam.username + '" já foi utilizado. Tente novamente com outro usuário.');
             } else {
-                createUser();
+
+                db.users.findOne({email: userParam.email}, function(err, user){
+                    if (err) deferred.reject(err.name + ': ' + err.message);
+
+                    if (user){
+                        // email already exists
+                        deferred.reject('O e-mail "' + userParam.email + '" já foi utilizado. Tente novamente com outro e-mail.');
+                    } else {
+                        createUser();
+                    }
+                })
             }
         });
 
@@ -154,3 +165,19 @@ function _delete(_id) {
 
     return deferred.promise;
 }
+
+function getByEmail(email){
+    var deferred = Q.defer();
+
+    db.users.findOne({email: email}, function(err, user){
+        if (err) deferred.reject(err.name + ': ' + err.message);
+
+        if (!user) {
+            deferred.reject('Não há nenhum usuário cadastrado com o e-mail informado.');
+        } else {
+            deferred.resolve(user);
+        }
+    });
+
+    return deferred.promise;
+};
