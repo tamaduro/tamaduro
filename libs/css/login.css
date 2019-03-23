@@ -4,6 +4,7 @@ html, body{
 
 body{
     display: flex;
+    background: url("/img/background.png")
 }
 
 .form-container {
@@ -41,4 +42,16 @@ body{
 
 .btn-login-action+.btn-login-action{
     margin-top: 20px;
+}
+
+.logo-img{
+    width: 200px
+}
+
+.btn-login-action:focus,
+.btn-login-action:hover,
+.btn-login-action:active,
+.btn-login-action:focus:active {
+    background-color: #925239!important;
+    border-color: #a97c55!important;
 }
