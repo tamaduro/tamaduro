@@ -4,8 +4,11 @@ html, body{
 
 body{
     display: flex;
-    background: url("/img/background.png")
+    background: url("/img/background.png");
+    background-size: cover;
 }
+
+body {}
 
 .form-container {
     width: 80%;
@@ -28,6 +31,14 @@ body{
     align-self: flex-end;
     font-size: .8em;
     margin-top: 0.5em;
+    color: #790101;
+}
+
+.forgot-password-link:hover, 
+.forgot-password-link:active, 
+.forgot-password-link:visited{
+    color: #790101;
+    text-decoration: none;
 }
 
 .form-group--actions{
@@ -58,7 +69,7 @@ body{
 }
 
 .user-content-form {
-    background: #f7efef;
+    background: #e5ca9a;
     padding: 30px;
     border-radius: 25px;
 }
