@@ -1,29 +1,28 @@
 ﻿<%- include('partials/header') %>
 <div class="form-container">
-    <h2>Register</h2>
+    <div class="logo-container">
+        <div class="logo">
+            TaMaduro
+        </div>
+    </div>
     <% if(locals.error) { %>
         <div class="alert alert-danger"><%= error %></div>
     <% } %>
     <form method="post">
         <div class="form-group">
-            <label for="firstName">First name</label>
-            <input type="text" name="firstName" id="firstName" class="form-control" value="<%= locals.firstName || '' %>" required />
+            <input placeholder="Nome" type="text" name="firstName" id="firstName" class="form-control" value="<%= locals.firstName || '' %>" required />
         </div>
         <div class="form-group">
-            <label for="lastName">Last name</label>
-            <input type="text" name="lastName" id="lastName" class="form-control" value="<%= locals.lastName || '' %>" required />
+            <input placeholder="E-mail" type="email" name="lastName" id="lastName" class="form-control" value="<%= locals.lastName || '' %>" required />
         </div>
         <div class="form-group">
-            <label for="username">Username</label>
-            <input type="text" name="username" id="username" class="form-control" value="<%= locals.username || '' %>" required />
+            <input placeholder="Login" type="text" name="username" id="username" class="form-control" value="<%= locals.username || '' %>" required />
         </div>
         <div class="form-group">
-            <label for="password">Password</label>
-            <input type="password" name="password" id="password" class="form-control" required />
+            <input placeholder="Senha" type="password" name="password" id="password" class="form-control" required />
         </div>
-        <div class="form-group">
-            <button type="submit" class="btn btn-primary">Register</button>
-            <a href="/login" class="btn btn-link">Cancel</a>
+        <div class="form-group form-group--actions">
+            <button type="submit" class="btn btn-login-action btn-block btn-primary">Confirmar</button>
         </div>
     </form>
 </div>
