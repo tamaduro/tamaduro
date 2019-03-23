@@ -52,12 +52,12 @@ api.use('/api', expressJwt({ secret: config.secret }).unless({ path: ['/api/user
 // Aqui o mapemanto das rotas da aplicação. Todos esses mapeamentos fazem parte da aplicação
 // A cada require, o js é inicializado
 app.use('/login', require('./controllers/login.controller'));
-app.use('/resetpassword', require('./controllers/resetpassword.controller'));
+app.use('/forgotpassword', require('./controllers/forgotpassword.controller'));
 app.use('/register', require('./controllers/register.controller'));
 app.use('/app', require('./controllers/app.controller'));
 app.use('/api/users', require('./controllers/api/users.controller'));
 app.use('/api/questions', require('./controllers/api/questions.controller'));
-app.use('/api/reset', require('./controllers/api/resetpassword.controller'));
+app.use('/api/reset', require('./controllers/api/forgotpassword.controller'));
 
 // configuração do redirecionamento inicial é isso que indica o que vai acontecer quando for feita a chamada do 
 // http://localhost:8092. Nesse caso, a aplicação será direcionada para 

@@ -1,7 +1,7 @@
 ﻿var config = require('config.json');
 var express = require('express');
 var router = express.Router();
-var resetPasswordService = require('services/resetpassword.service');
+var forgotPasswordService = require('services/forgotpassword.service');
 
 // routes
 router.post('/', resetUserPassword);
@@ -11,7 +11,7 @@ module.exports = router;
 
 function resetUserPassword(req, res) {
 
-    resetPasswordService.resetByEmail(req.body.email)
+    forgotPasswordService.resetByEmail(req.body.email)
     .then(function(){
         res.send(200);
     }).catch(function(){

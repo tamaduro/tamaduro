@@ -4,7 +4,7 @@ var request = require('request');
 var config = require('config.json');
 
 router.get('/', function (req, res) {
-    res.render('resetpassword');
+    res.render('forgotpassword');
 });
 
 router.post('/', function (req, res) {
@@ -15,10 +15,10 @@ router.post('/', function (req, res) {
         json: true
     }, function (error, response, body) {
         if (error) {
-            return res.render('resetpassword', { error: `Ocorreu um erro: ${error}` });
+            return res.render('forgotpassword', { error: `Ocorreu um erro: ${error}` });
         }
 
-        res.render('resetpassword', {
+        res.render('forgotpassword', {
             message: "Um link de confirmação foi enviado para o e-mail cadastrado. Verifique sua caixa de entrada."
         });
     });
