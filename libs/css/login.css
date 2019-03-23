@@ -1,5 +1,9 @@
-body {
-    padding-top: 100px;
+html, body{
+    height: 100%;
+}
+
+body{
+    display: flex;
 }
 
 .form-container {
@@ -7,10 +11,10 @@ body {
     margin: auto;
 }
 
-.credits {
-    border-top: 1px solid #ddd;
-    margin-top: 40px;
-    padding-top: 20px;
+.logo-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 25px;
 }
 
 .form-group--password{
@@ -23,4 +27,18 @@ body {
     align-self: flex-end;
     font-size: .8em;
     margin-top: 1em;
+}
+
+.form-group--actions{
+    margin-top: 2em;
+}
+
+.btn-login-action{
+    background: #cc927b;
+    border-color: #e28864;
+    font-size: 1.25em;
+}
+
+.btn-login-action+.btn-login-action{
+    margin-top: 20px;
 }
