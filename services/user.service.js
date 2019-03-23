@@ -119,7 +119,7 @@ function update(_id, userParam) {
         // fields to update
         var set = {
             firstName: userParam.firstName,
-            lastName: userParam.lastName,
+            email: userParam.email,
             username: userParam.username,
         };
 

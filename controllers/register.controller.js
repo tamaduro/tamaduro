@@ -22,7 +22,7 @@ router.post('/', function (req, res) {
             return res.render('register', {
                 error: response.body,
                 firstName: req.body.firstName,
-                lastName: req.body.lastName,
+                email: req.body.email,
                 username: req.body.username
             });
         }
