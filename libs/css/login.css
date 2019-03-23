@@ -35,9 +35,10 @@ body{
 }
 
 .btn-login-action{
-    background: #cc927b;
-    border-color: #e28864;
+    background: #f39069;
+    border-color: #da7b56;
     font-size: 1.25em;
+    color: #790101;
 }
 
 .btn-login-action+.btn-login-action{
@@ -45,7 +46,7 @@ body{
 }
 
 .logo-img{
-    width: 200px
+    width: 180px;
 }
 
 .btn-login-action:focus,
@@ -54,4 +55,10 @@ body{
 .btn-login-action:focus:active {
     background-color: #925239!important;
     border-color: #a97c55!important;
+}
+
+.user-content-form {
+    background: #f7efef;
+    padding: 30px;
+    border-radius: 25px;
 }

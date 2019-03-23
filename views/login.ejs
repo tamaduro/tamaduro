@@ -11,7 +11,7 @@
     <% if(locals.success) { %>
         <div class="alert alert-success"><%= success %></div>
     <% } %>
-    <form method="post">
+    <form class="user-content-form" method="post">
         <div class="form-group">
             <input type="text" name="username" id="username" value="<%= locals.username || '' %>" class="form-control" placeholder="E-mail"/>
         </div>

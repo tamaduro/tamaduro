@@ -8,7 +8,7 @@
     <% if(locals.error) { %>
         <div class="alert alert-danger"><%= error %></div>
     <% } %>
-    <form method="post">
+    <form class="user-content-form" method="post">
         <div class="form-group">
             <input placeholder="Nome" type="text" name="firstName" id="firstName" class="form-control" value="<%= locals.firstName || '' %>" required />
         </div>
