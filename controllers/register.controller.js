@@ -15,20 +15,20 @@ router.post('/', function (req, res) {
         json: true
     }, function (error, response, body) {
         if (error) {
-            return res.render('register', { error: 'An error occurred' });
+            return res.render('register', { error: 'Um erro ocorreu. Entre em contato com o suporte.' });
         }
 
         if (response.statusCode !== 200) {
             return res.render('register', {
                 error: response.body,
                 firstName: req.body.firstName,
-                lastName: req.body.lastName,
+                email: req.body.email,
                 username: req.body.username
             });
         }
 
         // return to login page with success message
-        req.session.success = 'Registration successful';
+        req.session.success = 'Usuário cadastrado com sucesso.';
         return res.redirect('/login');
     });
 });

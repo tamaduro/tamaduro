@@ -1,24 +1,27 @@
 ﻿<%- include('partials/header') %>
 <div class="form-container">
-    <h2>Login</h2>
+    <div class="logo-container">
+        <div class="logo">
+            <img class="logo-img" src="/img/ta_maduro.png" alt="TaMaduro"/>
+        </div>
+    </div>
     <% if(locals.error) { %>
         <div class="alert alert-danger"><%= error %></div>
     <% } %>
     <% if(locals.success) { %>
         <div class="alert alert-success"><%= success %></div>
     <% } %>
-    <form method="post">
+    <form class="user-content-form" method="post">
         <div class="form-group">
-            <label for="username">Username</label>
-            <input type="text" name="username" id="username" value="<%= locals.username || '' %>" class="form-control" />
+            <input type="text" name="username" id="username" value="<%= locals.username || '' %>" class="form-control" placeholder="Login"/>
         </div>
-        <div class="form-group">
-            <label for="password">Password</label>
-            <input type="password" name="password" id="password" class="form-control" />
+        <div class="form-group form-group--password">
+            <input type="password" name="password" id="password" class="form-control" placeholder="Senha"/>
+            <a class="forgot-password-link" href="/forgotpassword">Esqueci minha senha</a>
         </div>
-        <div class="form-group">
-            <button type="submit" class="btn btn-primary">Login</button>
-            <a href="/register" class="btn btn-link">Register</a>
+        <div class="form-group form-group--actions">
+            <button type="submit" class="btn btn-login-action btn-block btn-primary">Login</button>
+            <a href="/register" class="btn btn-login-action btn-block btn-primary">Cadastrar</a>
         </div>
     </form>
 </div>

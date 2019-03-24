@@ -11,6 +11,8 @@ var service = {};
 
 service.authenticate = authenticate;
 service.getById = getById;
+service.getByUsername = getByUsername;
+service.getByEmail = getByEmail;
 service.create = create;
 service.update = update;
 service.delete = _delete;
@@ -64,9 +66,19 @@ function create(userParam) {
 
             if (user) {
                 // username already exists
-                deferred.reject('Username "' + userParam.username + '" is already taken');
+                deferred.reject('O usuário "' + userParam.username + '" já foi utilizado. Tente novamente com outro usuário.');
             } else {
-                createUser();
+
+                db.users.findOne({email: userParam.email}, function(err, user){
+                    if (err) deferred.reject(err.name + ': ' + err.message);
+
+                    if (user){
+                        // email already exists
+                        deferred.reject('O e-mail "' + userParam.email + '" já foi utilizado. Tente novamente com outro e-mail.');
+                    } else {
+                        createUser();
+                    }
+                })
             }
         });
 
@@ -89,7 +101,7 @@ function create(userParam) {
     return deferred.promise;
 }
 
-function update(_id, userParam) {
+function update(_id, userParam, skinnyUpdate) {
     var deferred = Q.defer();
 
     // validation
@@ -105,7 +117,7 @@ function update(_id, userParam) {
 
                     if (user) {
                         // username already exists
-                        deferred.reject('Username "' + req.body.username + '" is already taken')
+                        deferred.reject('O usuário "' + req.body.username + '" já foi utilizado. Tente novamente com outro usuário.')
                     } else {
                         updateUser();
                     }
@@ -119,13 +131,21 @@ function update(_id, userParam) {
         // fields to update
         var set = {
             firstName: userParam.firstName,
-            lastName: userParam.lastName,
+            email: userParam.email,
             username: userParam.username,
         };
 
         // update password if it was entered
         if (userParam.password) {
             set.hash = bcrypt.hashSync(userParam.password, 10);
+        }
+
+        if (skinnyUpdate){
+            for(let property of Object.getOwnPropertyNames(set)){
+                if (!set[property]){
+                    delete set[property];
+                }
+            }
         }
 
         db.users.update(
@@ -154,3 +174,35 @@ function _delete(_id) {
 
     return deferred.promise;
 }
+
+function getByEmail(email){
+    var deferred = Q.defer();
+
+    db.users.findOne({email: email}, function(err, user){
+        if (err) deferred.reject(err.name + ': ' + err.message);
+
+        if (!user) {
+            deferred.reject('Não há nenhum usuário cadastrado com o e-mail informado.');
+        } else {
+            deferred.resolve(user);
+        }
+    });
+
+    return deferred.promise;
+};
+
+function getByUsername(username){
+    var deferred = Q.defer();
+
+    db.users.findOne({username: username}, function(err, user){
+        if (err) deferred.reject(err.name + ': ' + err.message);
+
+        if (!user) {
+            deferred.reject('Não há nenhum usuário cadastrado com o usuário informado.');
+        } else {
+            deferred.resolve(user);
+        }
+    });
+
+    return deferred.promise;
+};

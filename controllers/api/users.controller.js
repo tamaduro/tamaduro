@@ -20,7 +20,7 @@ function authenticateUser(req, res) {
                 res.send({ userId: response.userId, token: response.token });
             } else {
                 // authentication failed
-                res.status(401).send('Username or password is incorrect');
+                res.status(401).send('Usuário ou senha incorretos.');
             }
         })
         .catch(function (err) {
@@ -56,7 +56,7 @@ function updateUser(req, res) {
     var userId = req.session.userId;
     if (req.params._id !== userId) {
         // can only update own account
-        return res.status(401).send('You can only update your own account');
+        return res.status(401).send('Você só pode atualizar sua própria conta.');
     }
 
     userService.update(userId, req.body)
@@ -72,7 +72,7 @@ function deleteUser(req, res) {
     var userId = req.session.userId;
     if (req.params._id !== userId) {
         // can only delete own account
-        return res.status(401).send('You can only delete your own account');
+        return res.status(401).send('Você só pode deletar sua própria conta.');
     }
 
     userService.delete(userId)

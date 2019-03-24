@@ -1,0 +1,75 @@
+html, body{
+    height: 100%;
+}
+
+body{
+    display: flex;
+    background: url("/img/background.png");
+    background-size: cover;
+}
+
+body {}
+
+.form-container {
+    width: 80%;
+    margin: auto;
+}
+
+.logo-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 25px;
+}
+
+.form-group--password{
+    display: flex;
+    flex-direction: column;
+    align-content: space-between;
+}
+
+.forgot-password-link {
+    align-self: flex-end;
+    font-size: .8em;
+    margin-top: 0.5em;
+    color: #790101;
+}
+
+.forgot-password-link:hover, 
+.forgot-password-link:active, 
+.forgot-password-link:visited{
+    color: #790101;
+    text-decoration: none;
+}
+
+.form-group--actions{
+    margin-top: 2em;
+}
+
+.btn-login-action{
+    background: #f39069;
+    border-color: #da7b56;
+    font-size: 1.25em;
+    color: #790101;
+}
+
+.btn-login-action+.btn-login-action{
+    margin-top: 20px;
+}
+
+.logo-img{
+    width: 180px;
+}
+
+.btn-login-action:focus,
+.btn-login-action:hover,
+.btn-login-action:active,
+.btn-login-action:focus:active {
+    background-color: #925239!important;
+    border-color: #a97c55!important;
+}
+
+.user-content-form {
+    background: #e5ca9a;
+    padding: 30px;
+    border-radius: 25px;
+}
