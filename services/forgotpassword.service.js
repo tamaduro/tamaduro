@@ -13,10 +13,15 @@ db.bind('resetRequests');
 var service = {};
 
 service.resetByEmail = resetByEmail;
+service.validateResetKey = validateResetKey;
+service.changePassword = changePassword;
 
 function resetByEmail(email) {
     var deferred = Q.defer();
-    let timestamp = new Date().getTime();
+    let validUntil = new Date();
+    validUntil.setDate(validUntil.getDate() + 1);
+    
+    let timestamp = validUntil.getTime();
 
     if(_.isEmpty(email)) {
         deferred.reject('Por favor, informe um e-mail.');
@@ -28,12 +33,12 @@ function resetByEmail(email) {
 
         db.resetRequests.insert({
             timestamp: timestamp,
-            userId: user.username,
-            id: bcrypt.hashSync(requestId, 10)
+            username: user.username,
+            requestId: bcrypt.hashSync(requestId, 10)
         }, function(err, doc){
             if (err) deferred.reject(err.name + ': ' + err.message);
 
-            sendResetEmail(email, `http://localhost:8092/resetpassword?key=${requestId}`).then(function(err, info){
+            sendResetEmail(email, `http://localhost:8092/resetpassword?username=${user.username}&key=${requestId}`).then(function(err, info){
                 
                 if (err){
                     deferred.reject(err);
@@ -47,6 +52,72 @@ function resetByEmail(email) {
     }).catch(function(){
         deferred.reject('Não há um usuario cadastrado com o e-mail informado.');
     });
+
+    return deferred.promise;
+}
+
+function validateResetKey(username, key){
+    var deferred = Q.defer();
+
+    let now = new Date().getTime();
+    
+    a = db.resetRequests.find({
+        username: username,
+        timestamp: { $gt: now }
+    }).toArray(function(err, items){
+        
+        items.forEach(item => {
+            if (bcrypt.compareSync(key, item.requestId)){
+                deferred.resolve();
+            }
+        });
+
+        deferred.reject();
+    });
+
+    return deferred.promise;
+}
+
+function changePassword(username, password, key){
+    var deferred = Q.defer();
+
+    let now = new Date().getTime();
+    
+    a = db.resetRequests.find({
+        username: username,
+        timestamp: { $gt: now }
+    }).toArray(function(err, items){
+        
+        items.forEach(item => {
+            if (bcrypt.compareSync(key, item.requestId)){
+                db.resetRequests.remove({
+                    username: username
+                }, function(err){
+                    if (!err){
+                        changeUserPassword(username, password);
+                    }
+                });
+            }
+        });
+
+        deferred.reject();
+    });
+
+    function changeUserPassword(username, password){
+        userService.getByUsername(username).then(function(user){
+            
+            userService.update(user._id, {
+                password: password
+            }, true).then(function(){
+                deferred.resolve('Senha alterada com sucesso.');
+            }).catch(function(err){
+                deferred.reject('Erro ao atualizar a senha: ' + err.message);
+            });
+
+        }).catch(function(err){
+            deferred.reject('Usuário não encontrado.');
+        })
+    }
 
     return deferred.promise;
 }

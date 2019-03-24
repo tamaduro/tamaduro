@@ -15,6 +15,6 @@ function resetUserPassword(req, res) {
     .then(function(){
         res.send(200);
     }).catch(function(){
-        res.sendStatus(500);
+        res.sendStatus(404);
     });
 }

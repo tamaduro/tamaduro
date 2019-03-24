@@ -53,9 +53,11 @@ api.use('/api', expressJwt({ secret: config.secret }).unless({ path: ['/api/user
 // A cada require, o js é inicializado
 app.use('/login', require('./controllers/login.controller'));
 app.use('/forgotpassword', require('./controllers/forgotpassword.controller'));
+app.use('/resetpassword', require('./controllers/resetpassword.controller'));
 app.use('/register', require('./controllers/register.controller'));
 app.use('/app', require('./controllers/app.controller'));
 app.use('/api/users', require('./controllers/api/users.controller'));
+app.use('/api/resetpass', require('./controllers/api/resetpassword.controller'));
 app.use('/api/questions', require('./controllers/api/questions.controller'));
 app.use('/api/reset', require('./controllers/api/forgotpassword.controller'));
 

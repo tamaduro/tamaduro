@@ -11,6 +11,7 @@ var service = {};
 
 service.authenticate = authenticate;
 service.getById = getById;
+service.getByUsername = getByUsername;
 service.getByEmail = getByEmail;
 service.create = create;
 service.update = update;
@@ -100,7 +101,7 @@ function create(userParam) {
     return deferred.promise;
 }
 
-function update(_id, userParam) {
+function update(_id, userParam, skinnyUpdate) {
     var deferred = Q.defer();
 
     // validation
@@ -139,6 +140,14 @@ function update(_id, userParam) {
             set.hash = bcrypt.hashSync(userParam.password, 10);
         }
 
+        if (skinnyUpdate){
+            for(let property of Object.getOwnPropertyNames(set)){
+                if (!set[property]){
+                    delete set[property];
+                }
+            }
+        }
+
         db.users.update(
             { _id: mongo.helper.toObjectID(_id) },
             { $set: set },
@@ -174,6 +183,22 @@ function getByEmail(email){
 
         if (!user) {
             deferred.reject('Não há nenhum usuário cadastrado com o e-mail informado.');
+        } else {
+            deferred.resolve(user);
+        }
+    });
+
+    return deferred.promise;
+};
+
+function getByUsername(username){
+    var deferred = Q.defer();
+
+    db.users.findOne({username: username}, function(err, user){
+        if (err) deferred.reject(err.name + ': ' + err.message);
+
+        if (!user) {
+            deferred.reject('Não há nenhum usuário cadastrado com o usuário informado.');
         } else {
             deferred.resolve(user);
         }
