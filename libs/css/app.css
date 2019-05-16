@@ -86,3 +86,23 @@ main{
     height: auto;
     width: 110px;
 }
+
+.fruit-search-wrapper{
+    position: relative;
+    width: 85%;
+    top: 7.5px;
+}
+
+.fruit-search-input{
+    width: 100%!important;
+    position: absolute;
+}
+
+input.fruit-search-input{
+    color: #fffffff0
+
+}
+
+input.fruit-search-input::placeholder {
+    color: #ffffff75;
+}
