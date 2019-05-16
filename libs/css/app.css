@@ -1,0 +1,117 @@
+.container{
+    
+    width: 100%;
+    max-width: unset;
+}
+
+nav{
+    width: 100vw;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    z-index: 10;
+    background-color: #b4c82b;
+}
+
+main{
+    padding: 56px 0 0 0;
+}
+
+.sidenav {
+    z-index: 9999999;
+    background: linear-gradient(to top,  #cf6009 0%,#eacd00 100%);
+}
+
+.flash-message {
+    margin-top: 20px;
+}
+
+.fruit-list{
+    overflow-y: auto;
+    height: calc(100vh - 56px);
+    padding: 20px 10px 20px 22px;
+    background: linear-gradient(to bottom,  #b5cd23 0%,#ff5d3b 100%)
+}
+
+@media only screen and (min-width: 601px){
+    main{
+        padding: 64px 0 0 0;
+    }
+    .fruit-list{
+        height: calc(100vh - 64px);
+    }
+
+    .fruit-search-wrapper{
+        padding-left: 22px!important;
+        width: 60%!important;
+    }
+}
+
+.fruit-list .collection .collection-item {
+    background-color: transparent;
+    border-bottom: 1px solid #ffffff54;
+}
+
+.fruit-list .collection .collapsible-header {
+    background-color: transparent;
+    border-bottom: 1px solid #ffffff2e;
+    color: #fffffff0;
+}
+
+.fruit-list .item-list {
+    border-top: 1px solid #ffffff54;
+    border-right: none;
+    border-left: none;
+    border-bottom: none;
+}
+
+.item-collection-header .secondary-content {
+    color: white;
+    top: 25px!important;
+}
+
+.item-detail.collapsible-body {
+    border-bottom: 1px solid #ffffff2e;
+    color: #ffffffde;
+}
+
+.collapsible-body{
+    padding: 0;
+}   
+
+.item-description{
+    text-align: justify;
+    padding: 0 10px 0 0;
+    position: relative;
+}
+
+.sidenav .user-view .circle {
+    margin: auto;
+    margin-left: -10px;
+    height: auto;
+    width: 110px;
+}
+
+.fruit-search-wrapper{
+    position: relative;
+    width: 85%;
+    top: 7.5px;
+}
+
+.fruit-search-input{
+    width: 100%!important;
+    position: absolute;
+}
+
+input.fruit-search-input{
+    color: #fffffff0
+
+}
+
+input.fruit-search-input::placeholder {
+    color: #ffffff75;
+}
+
+.fruit-search-wrapper{
+    display: none
+}
