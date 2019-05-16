@@ -1,1 +1,36 @@
-﻿<h1>Hi {{vm.user.firstName}}!!</h1>
+﻿<div class="fruit-list" infinite-scroll >
+    <ul class="collection collapsible item-list" ng-if="vm.fruits && vm.fruits.length" ng-cloak>
+        <li class="collection-item avatar" ng-repeat="item in vm.fruits track by $index">
+            <!-- <i class="material-icons circle">layers</i> -->
+            <img ng-src="{{item.imgUrl}}" alt class="circle">
+            
+            <div class="collapsible-header item-collection-header">
+                <span class="title">{{item.name}}</span>
+                <p></p>
+                <a class="secondary-content"><i class="material-icons">expand_more</i></a>
+            </div>
+
+            <div class="collapsible-body col s12 item-detail">
+                
+                <div class="row">
+                    <div class="input-field col s12">
+                        <div class="item-description">{{item.description}}</div>
+                    </div>
+                </div>
+            </div>
+        </li>
+
+        <script>
+            $('.collapsible').collapsible();
+        </script>
+    </ul>
+
+    <div class="progress" ng-if="vm.isLoading == true">
+        <div class="indeterminate"></div>
+    </div>
+
+    <div ng-cloak ng-if="vm.isLoading == false && !vm.fruits">
+        Nenhuma fruta foi encontrada.
+    </div>
+</div>
+
