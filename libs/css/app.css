@@ -40,6 +40,11 @@ main{
     .fruit-list{
         height: calc(100vh - 64px);
     }
+
+    .fruit-search-wrapper{
+        padding-left: 22px!important;
+        width: 60%!important;
+    }
 }
 
 .fruit-list .collection .collection-item {
