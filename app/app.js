@@ -18,16 +18,16 @@
             data: { activeTab: 'home', pageLabel: 'Lista' }
         };
 
-        $stateProvider
-            .state('home', listingHomeRoute)
+        // $stateProvider
+        //     .state('home', listingHomeRoute)
             
-            .state('Cadastro', {
-                url: '/favorites',
-                templateUrl: 'favorites/favorites.html',
-                controller: 'Cadastro.IndexController',
-                controllerAs: 'vm',
-                data: { activeTab: 'Cadastro', pageLabel: '' }
-            })
+        //     .state('Cadastro', {
+        //         url: '/favorites',
+        //         templateUrl: 'favorites/favorites.html',
+        //         controller: 'Cadastro.IndexController',
+        //         controllerAs: 'vm',
+        //         data: { activeTab: 'Cadastro', pageLabel: '' }
+        //     })
             
     }
 
