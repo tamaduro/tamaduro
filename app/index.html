@@ -20,16 +20,16 @@
 
 <body class="container">
   
-    <nav>
+    <nav ng-controller="Home.IndexController as vm"> 
         <div class="nav-wrapper">
             <a href="#" data-target="slide-out" class="sidenav-trigger">
                 <i class="material-icons">menu</i>
             </a>
-            <div class="fruit-search-wrapper">
-                <input class="fruit-search-input" type="text" placeholder="digite o nome da fruta"/>
+            <div ng-cloak ng-if="vm.fruits && vm.fruits.length != 0" class="fruit-search-wrapper">
+                <input class="fruit-search-input" type="text" placeholder="digite o nome da fruta" ng-model="fruitName" ng-change="filter()"/>
             </div>
             <div class="menu-name" ng-cloak>
-                {{pageLabel}}
+                {{$scope.pageLabel}}
             </div>
             <ul id="nav-mobile" class="right hide-on-med-and-down">
                 <li ng-class="{active: activeTab === 'home' || activeTab == ''}"><a ui-sref="home">Lista de frutas</a></li>

@@ -111,3 +111,7 @@ input.fruit-search-input{
 input.fruit-search-input::placeholder {
     color: #ffffff75;
 }
+
+.fruit-search-wrapper{
+    display: none
+}
