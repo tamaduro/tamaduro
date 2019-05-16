@@ -18,8 +18,8 @@
             data: { activeTab: 'home', pageLabel: 'Lista' }
         };
 
-        // $stateProvider
-        //     .state('home', listingHomeRoute)
+        $stateProvider
+            .state('home', listingHomeRoute)
             
         //     .state('Cadastro', {
         //         url: '/favorites',
