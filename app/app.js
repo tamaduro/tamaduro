@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('app', ['ui.router'])
+        .module('app', ['ui.router', 'infinite-scroll'])
         .config(config)
         .run(run);
 
@@ -10,28 +10,25 @@
         // default route
         $urlRouterProvider.otherwise("/");
 
+        let listingHomeRoute = {
+            url: '/',
+            templateUrl: 'home/index.html',
+            controller: 'Home.IndexController',
+            controllerAs: 'vm',
+            data: { activeTab: 'home', pageLabel: 'Lista' }
+        };
+
         $stateProvider
-            .state('home', {
-                url: '/',
-                templateUrl: 'home/index.html',
-                controller: 'Home.IndexController',
+            .state('home', listingHomeRoute)
+            
+            .state('Cadastro', {
+                url: '/favorites',
+                templateUrl: 'favorites/favorites.html',
+                controller: 'Cadastro.IndexController',
                 controllerAs: 'vm',
-                data: { activeTab: 'home' }
+                data: { activeTab: 'Cadastro', pageLabel: '' }
             })
-            .state('account', {
-                url: '/account',
-                templateUrl: 'account/index.html',
-                controller: 'Account.IndexController',
-                controllerAs: 'vm',
-                data: { activeTab: 'account' }
-            })
-            .state('question', {
-                url: '/question',
-                templateUrl: 'question/index.html',
-                controller: 'Question.IndexController',
-                controllerAs: 'vm',
-                data: { activeTab: 'question' }
-            });
+            
     }
 
     function run($http, $rootScope, $window) {
@@ -41,6 +38,7 @@
         // update active tab on state change
         $rootScope.$on('$stateChangeSuccess', function (event, toState, toParams, fromState, fromParams) {
             $rootScope.activeTab = toState.data.activeTab;
+            $rootScope.label = toState.data.label;
         });
     }
 
@@ -52,5 +50,9 @@
 
             angular.bootstrap(document, ['app']);
         });
+    });
+
+    $(document).ready(function(){
+        $('.sidenav').sidenav();
     });
 })();

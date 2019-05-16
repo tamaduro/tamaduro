@@ -7,6 +7,7 @@
 
     function Controller(UserService) {
         var vm = this;
+        vm.isLoading = true;
 
         vm.user = null;
 
@@ -16,6 +17,8 @@
             // get current user
             UserService.GetCurrent().then(function (user) {
                 vm.user = user;
+                vm.fruits = globalThis.fruits;
+                vm.isLoading = false;
             });
         }
     }
